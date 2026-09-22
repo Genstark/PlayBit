@@ -25,9 +25,9 @@ function createDailyTasksRouter({ client }) {
             await taskData().deleteMany({});
             await dailyTasks().deleteMany({});
             rolldicenumber = await rollDice();
-            questions = await googleAPI.generateText('generate most tough and tough scientific questions');
+            questions = await googleAPI.generateText();
             while (questions.length < 10) {
-                questions = await googleAPI.generateText('generate most tough and tough scientific questions');
+                questions = await googleAPI.generateText();
             }
             await taskData().insertOne({ date: today, rolldicenumber, questions });
             return res.status(200).json({ result: rolldicenumber, questions, ok: true });
