@@ -25,9 +25,10 @@ const cards = [
     {
         title: 'Library',
         description: 'Explore interactive lessons and expand your knowledge.',
-        page: 'https://engage-dev1.comprodls.com/',
+        // page: 'https://engage-dev1.comprodls.com/',
+        page: { name: 'library-id', params: { id: localStorage.getItem('user') } },
         image: library,
-        blank: true
+        blank: false
     },
     {
         title: 'Daily Task',

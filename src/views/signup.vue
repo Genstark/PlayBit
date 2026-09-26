@@ -20,7 +20,7 @@ async function handleSignup() {
     }
 
     // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.com$/;
     if (!emailRegex.test(email.value)) {
         alert('Please enter a valid email address.');
         return;
