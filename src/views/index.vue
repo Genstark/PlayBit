@@ -25,15 +25,14 @@ const cards = [
     {
         title: 'Library',
         description: 'Explore interactive lessons and expand your knowledge.',
-        page: 'https://engage-dev1.comprodls.com/',
+        // page: 'https://engage-dev1.comprodls.com/',
+        page: { name: 'library-id', params: { id: localStorage.getItem('user') } },
         image: library,
-        blank: true
-        // image: 'https://img.freepik.com/free-vector/student-studying-online-isometric-illustration_52683-79996.jpg?w=740&T=ST=1700000000~EXP=1700000000~HMAC=yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy'
+        blank: false
     },
     {
         title: 'Daily Task',
         description: 'Complete the assigned tasks and quizzes.',
-        // public/ files are copied to the project root on build — reference them from the root
         image: taskimage,
         page: { name: 'task-id', params: { id: localStorage.getItem('user') } },
         blank: false

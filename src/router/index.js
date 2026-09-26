@@ -62,7 +62,17 @@ const routes = [
         path: '/:id/profile',
         name: 'profile-id',
         component: () => import('../views/profile.vue')
-    }
+    },
+    {
+        path: '/:id/Library',
+        name: 'library-id',
+        component: () => import('../views/library.vue')
+    },
+    {
+        path: '/:id/Library/E-Book/:ebookName',
+        name: 'E-Book',
+        component: () => import('../views/e-books.vue')
+    },
 ];
 
 const router = createRouter({

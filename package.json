@@ -10,7 +10,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev": "nodemon server/index.js",
-    "prod": "node server/index.js",
+    "pre:prod": "node server/index.js",
     "postinstall": "node server/utils/postinstall.js",
     "start": "node server/index.js"
   },
