@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const s3 = new S3Client({
-    region: "ap-south-1",
+    region: process.env.AWS_REGION,
     credentials: {
         accessKeyId: process.env.AWS_PAGE_ACCESS_KEY,
         secretAccessKey: process.env.AWS_PAGE_SCREATE_KEY,

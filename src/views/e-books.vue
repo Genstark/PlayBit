@@ -25,9 +25,7 @@ watch(bookUrl, async (url, _previousUrl, onCleanup) => {
     iframeHtml.value = '';
 
     try {
-        console.log('start')
         const response = await fetch(url, { signal: controller.signal });
-        console.log('response', response);
         if (!response.ok) {
             throw new Error(`Could not load ebook (HTTP ${response.status})`);
         }
