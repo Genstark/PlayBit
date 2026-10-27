@@ -10,6 +10,7 @@ const isMobileMenuOpen = ref(false);
 const largeText = ref(false);
 const recentSearches = ref([]);
 const user = ref(null); // ✅ Track logged-in user
+const isDarkMode = ref(false);
 
 function toggleMobileMenu() {
     isMobileMenuOpen.value = !isMobileMenuOpen.value;
@@ -28,7 +29,17 @@ onMounted(() => {
     if (savedUser || token) {
         user.value = savedUser;
     }
+
+    isDarkMode.value = localStorage.getItem("theme") === "dark";
 });
+
+function toggleTheme() {
+    isDarkMode.value = !isDarkMode.value;
+    localStorage.setItem("theme", isDarkMode.value ? "dark" : "light");
+    window.dispatchEvent(new CustomEvent("theme-change", {
+        detail: isDarkMode.value ? "dark" : "light"
+    }));
+}
 
 function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
@@ -45,7 +56,7 @@ function logout() {
 
 <template>
     <div class="pt-16"></div>
-    <header class="fixed top-0 left-0 w-full bg-white shadow z-50" :class="{ 'large-text': largeText }">
+    <header class="fixed top-0 left-0 w-full bg-white shadow z-50 dark:bg-gray-900" :class="{ 'large-text': largeText }">
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-3 sm:py-4">
                 <!-- Left: Logo + Nav -->
@@ -60,7 +71,7 @@ function logout() {
                     <!-- Nav (hidden on mobile) -->
                     <nav class="hidden md:flex items-center space-x-4 lg:space-x-6">
                         <router-link :to="`/${user}`" class="text-sm sm:text-base lg:text-lg text-gray-700 hover:text-primary-600 font-semibold">Home</router-link>
-                        <router-link to="/about" class="text-sm sm:text-base lg:text-lg text-gray-700 hover:text-primary-600 font-semibold">About</router-link>
+                        <router-link to="/about" class="text-sm sm:text-base lg:text-lg text-gray-700 dark:text-gray-200 hover:text-primary-600 font-semibold">About</router-link>
                         <!-- <router-link to="/explore" class="text-sm sm:text-base lg:text-lg text-gray-700 hover:text-primary-600">Explore</router-link> -->
                         <router-link :to="user ? `/${user}/scores` : '/scores'" class="text-sm sm:text-base lg:text-lg text-gray-700 hover:text-primary-600 font-semibold">
                             Scores
@@ -70,6 +81,18 @@ function logout() {
 
                 <!-- Right side -->
                 <div class="hidden md:flex items-center space-x-4 lg:space-x-6">
+                    <button @click="toggleTheme" type="button"
+                        class="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                        :aria-label="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+                        :title="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+                        <svg v-if="isDarkMode" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="12" cy="12" r="4" />
+                            <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                        </svg>
+                        <svg v-else class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+                        </svg>
+                    </button>
                     <!-- ✅ If user is logged in -->
                     <template v-if="user">
                         <div class="flex items-center space-x-3">
@@ -111,6 +134,18 @@ function logout() {
 
             <!-- Mobile Menu -->
             <div v-if="isMobileMenuOpen" class="md:hidden space-y-4 sm:space-y-6 pb-4 sm:pb-6">
+                <button @click="toggleTheme" type="button"
+                    class="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                    :aria-label="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+                    :title="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+                    <svg v-if="isDarkMode" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4" />
+                        <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                    </svg>
+                    <svg v-else class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+                    </svg>
+                </button>
                 <nav class="flex flex-col space-y-2 sm:space-y-3">
                     <p class="text-l sm:text-base text-gray-700 hover:text-primary-600 font-bold" @click="router.push({name:'user-home', params: { id: user }})">Home
                         <!-- <router-link :to="`/${user}`"></router-link> -->

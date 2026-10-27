@@ -2,18 +2,18 @@
 <script setup>
 import Header from '@/components/Header.vue';
 import Cards from '@/components/Cards.vue';
-import { onUnmounted } from 'vue';
+import { computed, onUnmounted } from 'vue';
 
-const cards = [
+const cards = computed(() => [
     {
         title: 'Arduino Kids',
         description: 'Explore interactive lessons and expand your knowledge.',
-        image: "https://mp.moonpreneur.com/blog/wp-content/uploads/2024/02/teach-arduino-to-12-year-old.webp",
-                page: {
+        image: "https://i.ibb.co/R4jCCY5g/teach-arduino-to-12-year-old.webp",
+        page: {
             name: 'E-Book',
             params: {
                 id: localStorage.getItem('user'),
-                ebookName: 'Arduino-Kids'
+                ebookName: 'arduino-book-kids'
             }
         },
         blank: false
@@ -21,17 +21,17 @@ const cards = [
     {
         title: 'Arduino',
         description: 'Explore interactive lessons and expand your knowledge.',
-        image: "https://roboticsbackend.com/wp-content/uploads/2022/04/arduino_logo.png",
+        image: "https://i.ibb.co/GQqLBkQk/arduino-logo.png",
         page: {
             name: 'E-Book',
             params: {
                 id: localStorage.getItem('user'),
-                ebookName: 'Arduino'
+                ebookName: 'arduino-book'
             }
         },
         blank: false
     }
-];
+]);
 
 onUnmounted(() => {
     // console.log('Index component unmounted');
