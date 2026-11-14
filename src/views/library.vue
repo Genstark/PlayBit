@@ -7,8 +7,8 @@ import { computed, onUnmounted } from 'vue';
 const cards = computed(() => [
     {
         title: 'Arduino Kids',
-        description: 'Explore interactive lessons and expand your knowledge.',
-        image: "https://i.ibb.co/R4jCCY5g/teach-arduino-to-12-year-old.webp",
+        description: '',
+        image: "/images/arduino-kids.png",
         page: {
             name: 'E-Book',
             params: {
@@ -20,8 +20,8 @@ const cards = computed(() => [
     },
     {
         title: 'Arduino',
-        description: 'Explore interactive lessons and expand your knowledge.',
-        image: "https://i.ibb.co/GQqLBkQk/arduino-logo.png",
+        description: '',
+        image: "/images/arduino.png",
         page: {
             name: 'E-Book',
             params: {
