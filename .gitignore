@@ -33,3 +33,9 @@ client
 # ignore file / folder
 test.js
 testing
+
+# package lock json
+package-lock.json
+
+books
+server/EBooks

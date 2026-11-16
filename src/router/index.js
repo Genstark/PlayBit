@@ -59,11 +59,6 @@ const routes = [
         component: () => import('../views/reset-email.vue')
     },
     {
-        path: '/:id/profile',
-        name: 'profile-id',
-        component: () => import('../views/profile.vue')
-    },
-    {
         path: '/:id/Library',
         name: 'library-id',
         component: () => import('../views/library.vue')
