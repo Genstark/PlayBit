@@ -81,7 +81,7 @@ function logout() {
 
                 <!-- Right side -->
                 <div class="hidden md:flex items-center space-x-4 lg:space-x-6">
-                    <button @click="toggleTheme" type="button"
+                    <!-- <button @click="toggleTheme" type="button"
                         class="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
                         :aria-label="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
                         :title="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
@@ -92,7 +92,7 @@ function logout() {
                         <svg v-else class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
                         </svg>
-                    </button>
+                    </button> -->
                     <!-- ✅ If user is logged in -->
                     <template v-if="user">
                         <div class="flex items-center space-x-3">
